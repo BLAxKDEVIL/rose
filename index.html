@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rose Day Special</title>
+
+<style>
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:linear-gradient(120deg,#ff4d6d,#ff8fa3,#ffc2d1);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* Navigation */
+nav{
+background:white;
+padding:15px;
+}
+
+nav a{
+margin:20px;
+text-decoration:none;
+color:#ff4d6d;
+font-weight:bold;
+font-size:18px;
+}
+
+/* Shayari Box */
+.shayari-box{
+margin-top:120px;
+padding:30px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+background:rgba(255,255,255,0.15);
+border-radius:20px;
+box-shadow:0 0 25px white;
+backdrop-filter: blur(10px);
+}
+
+.shayari-box h1{
+font-size:45px;
+text-shadow:0 0 20px white;
+}
+
+.shayari{
+font-size:22px;
+margin-top:20px;
+line-height:1.6;
+}
+
+/* Next Button */
+.next-btn{
+margin-top:30px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 20px white;
+}
+
+.next-btn:hover{
+transform:scale(1.1);
+}
+
+/* Rose Rain */
+.rose{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{ transform:translateY(110vh); }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="letter.html">Love Letter</a>
+<a href="gallery.html">Gallery</a>
+<a href="quotes.html">Quotes</a>
+</nav>
+
+<div class="shayari-box">
+
+<h1>🌹 Happy Rose Day 🌹</h1>
+
+<div class="shayari">
+Gulshan me phool bahut hai, <br>
+Par gulaab jaisa koi nahi 🌹 <br><br>
+
+Dosti aur pyaar bahut mile, <br>
+Par aap jaisa koi nahi ❤️
+</div>
+
+<button class="next-btn" onclick="goNext()">Explore More 💖</button>
+
+</div>
+
+<script>
+
+/* Next Page Button */
+function goNext(){
+window.location.href="letter.html";
+}
+
+/* Rose Rain */
+function createRose(){
+let rose=document.createElement("div");
+rose.classList.add("rose");
+rose.innerText="🌹";
+rose.style.left=Math.random()*100+"vw";
+rose.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(rose);
+setTimeout(()=>rose.remove(),8000);
+}
+
+setInterval(createRose,300);
+
+</script>
+
+</body>
+</html>

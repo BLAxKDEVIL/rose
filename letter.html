@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Love Letter</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+background:linear-gradient(120deg,#ff4d6d,#ff8fa3,#ffc2d1);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+/* Navigation Buttons */
+.back-btn, .next-btn{
+position:absolute;
+top:20px;
+padding:10px 20px;
+border:none;
+border-radius:25px;
+background:white;
+color:#ff4d6d;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 15px white;
+transition:0.3s;
+}
+
+.back-btn{ left:20px; }
+.next-btn{ right:20px; }
+
+.back-btn:hover, .next-btn:hover{
+transform:scale(1.1);
+}
+
+/* Open Button */
+.open-btn{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+box-shadow:0 0 20px white;
+transition:0.3s;
+}
+
+.open-btn:hover{
+transform:scale(1.1);
+}
+
+/* Overlay */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(6px);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:0.5s;
+}
+
+.overlay.show{
+opacity:1;
+pointer-events:auto;
+}
+
+/* Letter Card */
+.letter{
+width:400px;
+max-height:80vh;
+overflow-y:auto;
+background:#fff0f3;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 40px pink;
+transform:scale(0.6);
+transition:0.5s;
+color:#ff4d6d;
+}
+
+.overlay.show .letter{
+transform:scale(1);
+}
+
+.close{
+float:right;
+cursor:pointer;
+font-size:20px;
+}
+
+.letter h2{
+text-align:center;
+margin-top:0;
+}
+
+/* Floating Hearts */
+.heart{
+position:fixed;
+font-size:20px;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{ transform:translateY(0); opacity:1; }
+100%{ transform:translateY(-100vh); opacity:0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Back + Next Buttons -->
+<button class="back-btn" onclick="goBack()">⬅ Home</button>
+<button class="next-btn" onclick="goGallery()">Next Gallery ➡</button>
+
+<button class="open-btn" onclick="openLetter()">💌 Open Love Letter</button>
+
+<div class="overlay" id="overlay">
+<div class="letter">
+<span class="close" onclick="closeLetter()">❌</span>
+
+<h2>🌹 My Special Letter 🌹</h2>
+
+<p id="text"></p>
+
+</div>
+</div>
+
+<script>
+
+/* Navigation */
+function goBack(){
+window.location.href="index.html";
+}
+
+function goGallery(){
+window.location.href="gallery.html";
+}
+
+/* Popup */
+function openLetter(){
+document.getElementById("overlay").classList.add("show");
+startTyping();
+}
+
+function closeLetter(){
+document.getElementById("overlay").classList.remove("show");
+}
+
+/* Typewriter Letter */
+let message = `
+From the moment you came into my life, everything started feeling more beautiful and meaningful.
+
+You are like a fresh rose in my garden of memories 🌹  
+Your smile brightens my darkest days and your presence makes every moment special.
+
+Sometimes words are not enough to express what I feel,
+but I want you to know that you are truly precious to me.
+
+Every conversation, every laugh, every small memory with you
+has become a treasure in my heart ❤️
+
+On this Rose Day, I just want to remind you that
+you are appreciated, valued, and deeply special.
+
+No matter where life takes us,
+I wish your life stays filled with happiness, smiles, and endless love.
+
+Happy Rose Day 🌹
+`;
+
+let i = 0;
+let speed = 40;
+
+function startTyping(){
+let textElement = document.getElementById("text");
+textElement.innerHTML = "";
+i = 0;
+typeWriter();
+}
+
+function typeWriter(){
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i);
+i++;
+setTimeout(typeWriter, speed);
+}
+}
+
+/* Floating Hearts */
+function createHeart(){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerText="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="-20px";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
